@@ -1,5 +1,6 @@
 var React = require('react');
 var Box = require('./Box');
+var TodoList = require('./TodoList');
 
 var App = React.createClass({
     getInitialState: function(){
@@ -45,6 +46,7 @@ var App = React.createClass({
             <div>
                 <h1> My Todo App</h1>
                 <Box storeTask={this.addTask} />
+                <TodoList taskList={this.state.taskList} />
             </div>
         );
     }
