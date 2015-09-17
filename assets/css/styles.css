@@ -1,0 +1,27 @@
+.container {
+    max-width: 980px;
+    text-align: center;
+    margin: 20px auto;
+}
+#box_form {
+    margin: 40px auto 60px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.glyphicon {
+    font-size: 18px;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.glyphicon-hand-down{
+    position: relative;
+    right: 30px;
+}
+
+.input-group {
+    margin-left: 4%;
+}
