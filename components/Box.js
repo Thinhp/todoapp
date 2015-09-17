@@ -14,7 +14,9 @@ var Box = React.createClass({
     handleSubmit: function(event){
 
         event.preventDefault();
-        console.log(this.state.value);
+        var value = this.state.value;
+        this.props.storeTask(value);
+        console.log("added:" + value);
 
         // When the form is submitted, call the onSearch callback that is passed to the component
         //this.props.onSearch(this.state.value);
