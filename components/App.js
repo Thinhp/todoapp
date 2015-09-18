@@ -7,6 +7,7 @@ var App = React.createClass({
         // Store the tasks in array
         localStorage.clear();
         var taskList = [];
+        
 
         if(localStorage.taskList){
             taskList = JSON.parse(localStorage.taskList);
@@ -26,7 +27,7 @@ var App = React.createClass({
             timestamp: Date()
         });
 
-        //Set the state 
+        //Set the state
         this.setState({
             taskList: taskList
         });

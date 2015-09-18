@@ -2,22 +2,29 @@ var React = require('react');
 var TodoItem = require('./TodoItem');
 
 var TodoList = React.createClass({
-    render: function(){
-        var taskList = this.props.taskList.map(function(t){
+  render: function(){
+    var taskList = this.props.taskList.map(function(t,i){
+      var index = i;
 
-            return (
-                <TodoItem text={t.text} timestamp={t.timestamp}
-                    />
-            );
+      return (
+        <TodoItem
+          key={index}
+          reactKey={index}
+          text={t.text}
+          timestamp={t.timestamp}
+          />
+      );
 
-        });
-        return(
-            <div className="list-group col-xs-12 col-md-6 col-md-offset-3">
-                <span className="list-group-item active">Your tasks</span>
-                {taskList}
-            </div>
-        );
-    }
+    });
+    return(
+      <div className="list-group col-xs-12 col-md-6 col-md-offset-3">
+        <span className="list-group-item active">
+          Your tasks
+        </span>
+        {taskList}
+      </div>
+    );
+  }
 
 });
 

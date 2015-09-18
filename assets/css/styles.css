@@ -36,7 +36,7 @@ h1 {
 .glyphicon-trash{
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: 5px;
     margin-top: -9px;
 }
 
@@ -56,4 +56,11 @@ span.createdAt {
 .list-group-item {
     position: relative;
     padding: 10px 20px;
+    margin-left: 10px;
+    overflow:hidden;
+}
+
+.single-item {
+  float: left;
+  clear: both;
 }
