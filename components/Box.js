@@ -2,7 +2,7 @@ var React = require('react');
 
 var Box = React.createClass({
     getInitialState: function(){
-        return({ 
+        return({
             value: ''
         });
     },
@@ -13,13 +13,13 @@ var Box = React.createClass({
     },
     handleSubmit: function(event){
 
+        //Prevent default
         event.preventDefault();
+
+        //Store value
         var value = this.state.value;
         this.props.storeTask(value);
         console.log("added:" + value);
-
-        // When the form is submitted, call the onSearch callback that is passed to the component
-        //this.props.onSearch(this.state.value);
         this.getDOMNode().querySelector('input').blur();
     },
     render: function(){
@@ -28,7 +28,7 @@ var Box = React.createClass({
                 <div className="form-group">
                     <div className="col-xs-12 col-md-6 col-md-offset-3">
                         <div className="input-group">
-                            <input type="text" className="form-control" id="address" placeholder="Enter a task..." 
+                            <input type="text" className="form-control" id="address" placeholder="Enter a task..."
                                 value={this.state.value} onChange={this.handleChange} />
                             <span className="input-group-btn">
                                 <span className="glyphicon glyphicon-hand-down" aria-hidden="true" onClick={this.handleSubmit}></span>

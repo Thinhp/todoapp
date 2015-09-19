@@ -26,23 +26,17 @@ h1 {
     margin-left: 4%;
 }
 
-.glyphicon-list-alt{
-    position: absolute;
-    top: 50%;
-    right: 30px;
-    margin-top: -9px;
-}
 
 .glyphicon-trash{
     position: absolute;
-    top: 50%;
-    right: 5px;
+    top: 40%;
+    right: 10px;
     margin-top: -9px;
 }
 
 span.createdAt {
     margin-top: 10px;
-    font-size: 50%;
+    font-size: 40%;
     display: block;
     color: #969FA8;
     z-index: -1;
@@ -60,7 +54,7 @@ span.createdAt {
     overflow:hidden;
 }
 
-.single-item {
+.single-item, #myId{
   float: left;
   clear: both;
 }

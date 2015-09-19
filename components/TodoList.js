@@ -2,16 +2,21 @@ var React = require('react');
 var TodoItem = require('./TodoItem');
 
 var TodoList = React.createClass({
+
   render: function(){
-    var taskList = this.props.taskList.map(function(t,i){
-      var index = i;
+    var self = this;
+    var taskList = this.props.taskList.map(function(t,index){
 
       return (
         <TodoItem
           key={index}
           reactKey={index}
           text={t.text}
+          status={t.status}
           timestamp={t.timestamp}
+          removeTask={self.props.removeTask}
+          editTask={self.props.editTask}
+          taskList={self.props.taskList}
           />
       );
 
