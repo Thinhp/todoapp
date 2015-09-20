@@ -1,15 +1,12 @@
 var React = require('react');
+var Utils = require('./Utils')
 
 var TodoItem = React.createClass({
-    getInitialState: function(){
-      var taskList = [];
-        return ({
-          taskList: this.props.taskList
-        });
-    },
     handleEdit: function(event){
-      React.findDOMNode(this.refs.spanText).contentEditable = true;
-      React.findDOMNode(this.refs.spanText).focus();
+      var currentObj = React.findDOMNode(this.refs.spanText);
+      currentObj.contentEditable = true;
+      currentObj.focus();
+      Utils(currentObj);
     },
     trashClick: function(event){
       event.preventDefault();
@@ -19,10 +16,20 @@ var TodoItem = React.createClass({
     onBlur: function(){
       var index = this.props.reactKey;
 
-      new_value = React.findDOMNode(this.refs.spanText).innerHTML;
+      new_value = React.findDOMNode(this.refs.spanText).innerHTML.trim();
       console.log(new_value);
 
+      React.findDOMNode(this.refs.spanText).contentEditable = false;
       this.props.editTask(index, new_value);
+    },
+    onKeyDown: function(e){
+      var self = this;
+      if(e.keyCode == 13){
+        e.preventDefault();
+        self.onBlur();
+        React.findDOMNode(this.refs.spanText).blur();
+        return;
+      }
     },
     render: function(){
         return(
@@ -34,7 +41,8 @@ var TodoItem = React.createClass({
                   ref="spanText"
                   className="single-item"
                   onDoubleClick={this.handleEdit}
-                  onBlur={this.onBlur}>
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}>
                   {this.props.text}</span>
                 <span className="createdAt single-item">{this.props.timestamp}</span>
                 </div>
