@@ -6,7 +6,7 @@ var TodoItem = React.createClass({
       var currentObj = React.findDOMNode(this.refs.spanText);
       currentObj.contentEditable = true;
       currentObj.focus();
-      Utils(currentObj);
+      Utils.setEndOfContentEditable(currentObj);
     },
     trashClick: function(event){
       event.preventDefault();
