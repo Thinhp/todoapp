@@ -54,7 +54,26 @@ span.createdAt {
     overflow:hidden;
 }
 
-.single-item, #myId{
+#myId {
   float: left;
-  clear: both;
+  margin-left: 10px;
+  width: 300px;
+}
+
+.single-item{
+  float: left;
+
+}
+
+.single-createAt {
+  float: left;
+  clear:both;
+}
+
+.single-checkbox {
+  float:left;
+}
+
+.single-checkbox:hover{
+  border: 1px solid #4778d9!important;
 }

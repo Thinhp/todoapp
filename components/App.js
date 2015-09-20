@@ -46,10 +46,17 @@ var App = React.createClass({
 
     localStorage.taskList = JSON.stringify(taskList);
   },
-  editTask: function(index, text){
+  editTask: function(index, text, status){
     console.log("Edited a task");
     var taskList = this.state.taskList;
-    taskList[index].text = text;
+
+    if(text != 0){
+      taskList[index].text = text;
+    }
+
+    if(status != 0){
+      taskList[index].status = status;
+    }
 
     this.setState({
       taskList: taskList
