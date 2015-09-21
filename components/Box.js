@@ -13,14 +13,19 @@ var Box = React.createClass({
     },
     handleSubmit: function(event){
 
-        //Prevent default
-        event.preventDefault();
+      //Prevent default
+      event.preventDefault();
 
-        //Store value
-        var value = this.state.value;
-        this.props.storeTask(value);
-        console.log("added:" + value);
-        this.getDOMNode().querySelector('input').blur();
+      //Store value
+      var value = this.state.value;
+      this.props.storeTask(value);
+      console.log("added:" + value);
+
+      React.findDOMNode(this.refs.boxref).blur();
+    },
+    onBlur: function(event){
+      console.log("blur");
+      this.state.value = "";
     },
     render: function(){
         return (
@@ -28,8 +33,8 @@ var Box = React.createClass({
                 <div className="form-group">
                     <div className="col-xs-12 col-md-6 col-md-offset-3">
                         <div className="input-group">
-                            <input type="text" className="form-control" id="address" placeholder="What's on your mind...?"
-                                value={this.state.value} onChange={this.handleChange} />
+                            <input ref="boxref" type="text" className="form-control" id="address" placeholder="What's on your mind...?"
+                                value={this.state.value} onChange={this.handleChange} onBlur={this.onBlur}/>
                             <span className="input-group-btn">
                                 <span className="glyphicon glyphicon-hand-down" aria-hidden="true" onClick={this.handleSubmit}></span>
                             </span>
