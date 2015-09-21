@@ -73,6 +73,9 @@ span.createdAt {
     margin-left: 10px;
     overflow:hidden;
 }
+/*.list-group-item:hover {
+  background-color: #ECECEC;
+}*/
 
 #myId {
   float: left;

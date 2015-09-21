@@ -17,7 +17,11 @@ var TodoItem = React.createClass({
       }
     },
     handleEdit: function(event){
+      console.log("editing");
       var currentObj = React.findDOMNode(this.refs.spanText);
+      var currentSpan = React.findDOMNode(this.refs.refwhole);
+
+      currentSpan.draggable = false;
       currentObj.contentEditable = true;
       currentObj.focus();
       Utils.setEndOfContentEditable(currentObj);
@@ -35,6 +39,9 @@ var TodoItem = React.createClass({
 
       React.findDOMNode(this.refs.spanText).contentEditable = false;
       this.props.editTask(index, new_value, 0);
+
+      var currentSpan = React.findDOMNode(this.refs.refwhole);
+      currentSpan.draggable = true;
     },
     onKeyDown: function(e){
       var self = this;
@@ -58,21 +65,26 @@ var TodoItem = React.createClass({
         this.props.editTask(index, 0, _INCOMPLETE);
       }
     },
+    onDragStart: function(event){
+      console.log("dragged");
+    },
     render: function(){
         return(
-            <span key={this.props.key}
-              className="list-group-item">
+            <span ref="refwhole" key={this.props.key}
+              className="list-group-item"
+              onDragStart={this.onDragStart}
+              draggable="true">
               <input ref="refcb" className="single-checkbox" type="checkbox" onClick={this.checkBoxClick} />
                 <div id="myId">
-                <span
-                  id="myText"
-                  ref="spanText"
-                  className="single-item"
-                  onDoubleClick={this.handleEdit}
-                  onBlur={this.onBlur}
-                  onKeyDown={this.onKeyDown}>
-                  {this.props.text}</span>
-                <span className="createdAt single-createAt">{this.props.timestamp}</span>
+                  <span
+                    id="myText"
+                    ref="spanText"
+                    className="single-item"
+                    onDoubleClick={this.handleEdit}
+                    onBlur={this.onBlur}
+                    onKeyDown={this.onKeyDown}>
+                    {this.props.text}</span>
+                  <span className="createdAt single-createAt">{this.props.timestamp}</span>
                 </div>
                 <label className="glyphicon glyphicon-trash" onClick={this.trashClick}></label>
             </span>

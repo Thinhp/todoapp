@@ -1,7 +1,7 @@
 {
   "name": "first-webapp-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "Todoapp using React",
   "main": "main.js",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "watch": "watchify -v -d -t [ reactify --es6 ] main.js -o compiled.js",
     "build": "NODE_ENV=production browserify -t [ reactify --es6 ] main.js | uglifyjs > compiled.js"
   },
-  "author": "Tutorialzine",
+  "author": "NgoTanThinh",
   "license": "MIT",
   "dependencies": {
     "moment": "^2.10.2",

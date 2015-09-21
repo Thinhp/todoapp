@@ -24,7 +24,6 @@ var Box = React.createClass({
       React.findDOMNode(this.refs.boxref).blur();
     },
     onBlur: function(event){
-      console.log("blur");
       this.state.value = "";
     },
     render: function(){
