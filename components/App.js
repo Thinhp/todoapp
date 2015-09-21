@@ -67,7 +67,7 @@ var App = React.createClass({
   render: function(){
     return(
       <div>
-        <h1> My Todo App</h1>
+        <h1> TODO </h1>
         <Box storeTask={this.addTask} />
         <TodoList
           taskList={this.state.taskList}

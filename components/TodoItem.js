@@ -30,7 +30,8 @@ var TodoItem = React.createClass({
     onBlur: function(){
       var index = this.props.reactKey;
 
-      new_value = React.findDOMNode(this.refs.spanText).innerHTML.trim();
+      new_value = React.findDOMNode(this.refs.spanText).innerText.trim();
+      console.log(new_value);
 
       React.findDOMNode(this.refs.spanText).contentEditable = false;
       this.props.editTask(index, new_value, 0);

@@ -21,7 +21,7 @@ var TodoList = React.createClass({
 
     });
     return(
-      <div className="list-group col-xs-12 col-md-6 col-md-offset-3">
+      <div className="list-group col-xs-12 col-md-8 col-md-offset-2">
         <span className="list-group-item active">
           Your tasks
         </span>
