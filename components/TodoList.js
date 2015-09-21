@@ -16,7 +16,6 @@ var TodoList = React.createClass({
           timestamp={t.timestamp}
           removeTask={self.props.removeTask}
           editTask={self.props.editTask}
-          taskList={self.props.taskList}
           />
       );
 

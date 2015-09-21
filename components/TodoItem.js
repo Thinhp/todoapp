@@ -5,8 +5,16 @@ var _COMPLETE = "complete";
 var _INCOMPLETE = "incomplete"
 
 var TodoItem = React.createClass({
-    componentWillMount: function(){
-      var taskList = this.props.taskList;
+    componentDidMount: function(){
+      var currentObj = React.findDOMNode(this.refs.spanText);
+      var currentCheckbox = React.findDOMNode(this.refs.refcb);
+
+      if(this.props.status == _COMPLETE){
+        currentObj.style.textDecoration = "line-through";
+        currentCheckbox.checked = true;
+      }else{
+        currentObj.style.textDecoration = "None";
+      }
     },
     handleEdit: function(event){
       var currentObj = React.findDOMNode(this.refs.spanText);
@@ -53,7 +61,7 @@ var TodoItem = React.createClass({
         return(
             <span key={this.props.key}
               className="list-group-item">
-              <input className="single-checkbox" type="checkbox" onClick={this.checkBoxClick} />
+              <input ref="refcb" className="single-checkbox" type="checkbox" onClick={this.checkBoxClick} />
                 <div id="myId">
                 <span
                   id="myText"
