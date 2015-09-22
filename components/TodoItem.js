@@ -66,13 +66,58 @@ var TodoItem = React.createClass({
       }
     },
     onDragStart: function(event){
-      console.log("dragged");
+      console.log("dragged start");
+      console.log(this.props.reactKey);
+      this.props.setDragState(this.props.reactKey, null);
+    },
+    onDragEnd: function(event){
+      console.log("dragged end");
+      event.preventDefault();
+    },
+    onDrop: function(event){
+      console.log("On drop");
+      event.preventDefault();
+      var currentSpan = React.findDOMNode(this.refs.refwhole);
+      currentSpan.style.border="";
+      this.props.dragAndDrop();
+    },
+    onDragOver: function(event){
+      // console.log("dragged over");
+      event.preventDefault();
+      var currentSpan = React.findDOMNode(this.refs.refwhole);
+      currentSpan.style.border="2px solid blue";
+      currentSpan.style.borderStyle="dashed";
+      currentSpan.style.zIndex="1";
+      this.props.setDragState(null, this.props.reactKey);
+      return;
+    },
+    onDragEnter: function(event){
+      // console.log("drag enter");
+    },
+    onDragLeave: function(event){
+      // console.log("drag exit");
+      var currentSpan = React.findDOMNode(this.refs.refwhole);
+      currentSpan.style.border="";
+    },
+    onMouseEnter: function(event){
+      // console.log("mouse enter");
+    },
+    onMouseLeave: function(event){
+      // console.log("mouse leave");
     },
     render: function(){
         return(
             <span ref="refwhole" key={this.props.key}
+              reactKey={this.props.reactKey}
               className="list-group-item"
               onDragStart={this.onDragStart}
+              onDragEnd={this.onDragEnd}
+              onDragOver={this.onDragOver}
+              onDrop={this.onDrop}
+              onDragEnter={this.onDragEnter}
+              onDragLeave={this.onDragLeave}
+              onMouseEnter={this.onMouseEnter}
+              onMouseLeave={this.onMouseLeave}
               draggable="true">
               <input ref="refcb" className="single-checkbox" type="checkbox" onClick={this.checkBoxClick} />
                 <div id="myId">

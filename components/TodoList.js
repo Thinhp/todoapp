@@ -2,7 +2,6 @@ var React = require('react');
 var TodoItem = require('./TodoItem');
 
 var TodoList = React.createClass({
-
   render: function(){
     var self = this;
     var taskList = this.props.taskList.map(function(t,index){
@@ -16,6 +15,8 @@ var TodoList = React.createClass({
           timestamp={t.timestamp}
           removeTask={self.props.removeTask}
           editTask={self.props.editTask}
+          setDragState={self.props.setDragState}
+          dragAndDrop={self.props.dragAndDrop}
           />
       );
 

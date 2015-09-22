@@ -13,7 +13,9 @@ var App = React.createClass({
     }
 
     return ({
-      taskList: taskList
+      taskList: taskList,
+      taskDragStartIndex: 0,
+      taskDragEndIndex: 0
     });
 
   },
@@ -64,6 +66,34 @@ var App = React.createClass({
 
     localStorage.taskList = JSON.stringify(taskList);
   },
+  setDragState: function(start, end){
+    if(start != null){
+      this.state.taskDragStartIndex = start;
+    }
+    if(end != null){
+      this.state.taskDragEndIndex = end;
+    }
+  },
+  dragAndDrop: function(){
+    var startDragIndex = this.state.taskDragStartIndex;
+    var endDragIndex = this.state.taskDragEndIndex;
+    var taskList = this.state.taskList;
+
+    if(startDragIndex != endDragIndex){
+      console.log("Not equal");
+
+      //Swap those 2 elements
+      var temp = taskList[startDragIndex];
+      taskList[startDragIndex] = taskList[endDragIndex];
+      taskList[endDragIndex] = temp;
+
+      this.setState({
+        taskList: taskList
+      });
+
+      localStorage.taskList = JSON.stringify(taskList);
+    }
+  },
   render: function(){
     return(
       <div>
@@ -73,6 +103,8 @@ var App = React.createClass({
           taskList={this.state.taskList}
           removeTask={this.removeTask}
           editTask={this.editTask}
+          setDragState={this.setDragState}
+          dragAndDrop={this.dragAndDrop}
         />
       </div>
     );
