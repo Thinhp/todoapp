@@ -9,6 +9,7 @@ body {
 }
 
 .container {
+  /*color: #000000;*/
   background-color: #FFFFFF;
   max-width: 900px;
   /*max-height: 500px;*/
@@ -83,9 +84,14 @@ span.createdAt {
   width: 300px;
 }
 
+.single-new-task {
+  float: left;
+  color: #aaa8a8;
+}
+
 .single-item{
   float: left;
-
+  color: #1c1f1f;
 }
 
 .single-createAt {

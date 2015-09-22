@@ -1,6 +1,7 @@
 var React = require('react');
 var Box = require('./Box');
 var TodoList = require('./TodoList');
+var TodoNewTask = require('./TodoNewTask');
 
 var App = React.createClass({
   getInitialState: function(){

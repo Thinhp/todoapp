@@ -28,6 +28,7 @@ var TodoItem = React.createClass({
 
       currentSpan.draggable = false;
       currentObj.contentEditable = true;
+      currentObj.style.outline = 0;
       currentObj.focus();
       Utils.setEndOfContentEditable(currentObj);
     },

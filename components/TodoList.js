@@ -1,5 +1,6 @@
 var React = require('react');
 var TodoItem = require('./TodoItem');
+var TodoNewTask = require('./TodoNewTask');
 
 var TodoList = React.createClass({
   render: function(){
@@ -23,10 +24,8 @@ var TodoList = React.createClass({
     });
     return(
       <div className="list-group col-xs-12 col-md-8 col-md-offset-2">
-        <span className="list-group-item active">
-          Your tasks
-        </span>
         {taskList}
+        <TodoNewTask />
       </div>
     );
   }
