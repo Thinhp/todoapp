@@ -14,10 +14,15 @@ var TodoItem = React.createClass({
         currentCheckbox.checked = true;
       }else{
         currentObj.style.textDecoration = "None";
+        currentCheckbox.checked = false;
       }
     },
+    componentDidUpdate: function(){
+      console.log("DID UPdate");
+      this.componentDidMount();
+    },
     handleEdit: function(event){
-      console.log("editing");
+      // console.log("editing");
       var currentObj = React.findDOMNode(this.refs.spanText);
       var currentSpan = React.findDOMNode(this.refs.refwhole);
 
@@ -28,7 +33,7 @@ var TodoItem = React.createClass({
     },
     trashClick: function(event){
       event.preventDefault();
-      console.log("removed item");
+      // console.log("removed item");
       this.props.removeTask(this.props.reactKey);
     },
     onBlur: function(){
@@ -69,9 +74,11 @@ var TodoItem = React.createClass({
       console.log("dragged start");
       console.log(this.props.reactKey);
       this.props.setDragState(this.props.reactKey, null);
+
+      var self = this;
     },
     onDragEnd: function(event){
-      console.log("dragged end");
+      // console.log("dragged end");
       event.preventDefault();
     },
     onDrop: function(event){
@@ -80,12 +87,13 @@ var TodoItem = React.createClass({
       var currentSpan = React.findDOMNode(this.refs.refwhole);
       currentSpan.style.border="";
       this.props.dragAndDrop();
+
     },
     onDragOver: function(event){
       // console.log("dragged over");
       event.preventDefault();
       var currentSpan = React.findDOMNode(this.refs.refwhole);
-      currentSpan.style.border="2px solid blue";
+      currentSpan.style.border="2px solid #043e73";
       currentSpan.style.borderStyle="dashed";
       currentSpan.style.zIndex="1";
       this.props.setDragState(null, this.props.reactKey);
@@ -106,6 +114,7 @@ var TodoItem = React.createClass({
       // console.log("mouse leave");
     },
     render: function(){
+      console.log("rendered in todo");
         return(
             <span ref="refwhole" key={this.props.key}
               reactKey={this.props.reactKey}

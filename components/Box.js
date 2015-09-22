@@ -18,7 +18,7 @@ var Box = React.createClass({
 
       //Store value
       var value = this.state.value;
-      this.props.storeTask(value);
+      this.props.addTask(value);
       console.log("added:" + value);
 
       React.findDOMNode(this.refs.boxref).blur();

@@ -15,7 +15,7 @@ var App = React.createClass({
     return ({
       taskList: taskList,
       taskDragStartIndex: 0,
-      taskDragEndIndex: 0
+      taskDragEndIndex: 0,
     });
 
   },
@@ -98,7 +98,7 @@ var App = React.createClass({
     return(
       <div>
         <h1> TODO </h1>
-        <Box storeTask={this.addTask} />
+        <Box addTask={this.addTask} />
         <TodoList
           taskList={this.state.taskList}
           removeTask={this.removeTask}
