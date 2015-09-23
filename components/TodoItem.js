@@ -63,6 +63,8 @@ var TodoItem = React.createClass({
         var currentObj = React.findDOMNode(this.refs.spanText);
         if(currentObj.innerHTML == "&nbsp;"){
           self.trashClick();
+          currentObj = React.findDOMNode(this.refs.spanText);
+          currentObj.blur();
         }
         return;
       }
