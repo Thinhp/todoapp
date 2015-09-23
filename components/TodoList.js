@@ -3,6 +3,11 @@ var TodoItem = require('./TodoItem');
 var TodoNewTask = require('./TodoNewTask');
 
 var TodoList = React.createClass({
+  getInitialState: function(){
+    return({
+      currentIndex: "None"
+    })
+  },
   render: function(){
     var self = this;
     var taskList = this.props.taskList.map(function(t,index){
@@ -18,6 +23,7 @@ var TodoList = React.createClass({
           editTask={self.props.editTask}
           setDragState={self.props.setDragState}
           dragAndDrop={self.props.dragAndDrop}
+          currentIndex={self.state.currentIndex}
           />
       );
 
@@ -25,7 +31,7 @@ var TodoList = React.createClass({
     return(
       <div className="list-group col-xs-12 col-md-8 col-md-offset-2">
         {taskList}
-        <TodoNewTask />
+        <TodoNewTask addTask={this.props.addTask}/>
       </div>
     );
   }

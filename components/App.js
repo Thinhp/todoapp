@@ -99,8 +99,8 @@ var App = React.createClass({
     return(
       <div>
         <h1> TODO </h1>
-        <Box addTask={this.addTask} />
         <TodoList
+          addTask={this.addTask}
           taskList={this.state.taskList}
           removeTask={this.removeTask}
           editTask={this.editTask}

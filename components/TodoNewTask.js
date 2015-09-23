@@ -16,19 +16,23 @@ var TodoNewTask = React.createClass({
   handleAddTask: function(){
 
   },
-  onBlur: function(){
+  onBlur: function(e){
+    console.log("texting blur");
     var obj = React.findDOMNode(this.refs.newTaskSpanText);
-    if(obj.innerText.trim() == ""){
-      obj.innerText = "Add new task"
-      obj.style.color= "#aaa8a8";
+    if(obj.innerText.trim() != ""){
+      //Handle adding task
+      this.props.addTask(obj.innerText);
     }
+    obj.innerText = "";
+    obj.blur();
+    obj.innerText = "Add new task"
+    obj.style.color= "#aaa8a8";
   },
   onKeyDown: function(e){
     var self = this;
     if(e.keyCode == 13){
       e.preventDefault();
       self.onBlur();
-      React.findDOMNode(this.refs.newTaskSpanText).blur();
       return;
     }
   },

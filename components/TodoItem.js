@@ -18,7 +18,6 @@ var TodoItem = React.createClass({
       }
     },
     componentDidUpdate: function(){
-      console.log("DID UPdate");
       this.componentDidMount();
     },
     handleEdit: function(event){
@@ -41,7 +40,6 @@ var TodoItem = React.createClass({
       var index = this.props.reactKey;
 
       new_value = React.findDOMNode(this.refs.spanText).innerText.trim();
-      console.log(new_value);
 
       React.findDOMNode(this.refs.spanText).contentEditable = false;
       this.props.editTask(index, new_value, 0);
@@ -73,10 +71,13 @@ var TodoItem = React.createClass({
     },
     onDragStart: function(event){
       console.log("dragged start");
-      console.log(this.props.reactKey);
       this.props.setDragState(this.props.reactKey, null);
-
-      var self = this;
+      var currentSpan = React.findDOMNode(this.refs.refwhole);
+      currentSpan.style.border="2px solid #039004"; // Green
+      currentSpan.style.borderStyle="dashed";
+      currentSpan.style.zIndex="1";
+      this.props.currentIndex = this.props.reactKey;
+      console.log("Start: " + this.props.currentIndex);
     },
     onDragEnd: function(event){
       // console.log("dragged end");
@@ -88,13 +89,19 @@ var TodoItem = React.createClass({
       var currentSpan = React.findDOMNode(this.refs.refwhole);
       currentSpan.style.border="";
       this.props.dragAndDrop();
-
+      this.props.currentIndex = "None";
     },
     onDragOver: function(event){
       // console.log("dragged over");
       event.preventDefault();
       var currentSpan = React.findDOMNode(this.refs.refwhole);
-      currentSpan.style.border="2px solid #043e73";
+
+      console.log(this.props.currentIndex + " || " + this.props.reactKey);
+      if(this.props.reactKey == this.props.currentIndex){
+        currentSpan.style.border="2px solid #d10f0f"; // Red
+      }else{
+        currentSpan.style.border="2px solid #043e73"; // Blue
+      }
       currentSpan.style.borderStyle="dashed";
       currentSpan.style.zIndex="1";
       this.props.setDragState(null, this.props.reactKey);
@@ -115,7 +122,6 @@ var TodoItem = React.createClass({
       // console.log("mouse leave");
     },
     render: function(){
-      console.log("rendered in todo");
         return(
             <span ref="refwhole" key={this.props.key}
               reactKey={this.props.reactKey}
