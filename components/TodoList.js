@@ -10,6 +10,9 @@ var TodoList = React.createClass({
   },
   render: function(){
     var self = this;
+
+    //HandleChange for span
+
     var taskList = this.props.taskList.map(function(t,index){
 
       return (
@@ -28,6 +31,7 @@ var TodoList = React.createClass({
       );
 
     });
+
     return(
       <div className="list-group col-xs-12 col-md-8 col-md-offset-2">
         {taskList}

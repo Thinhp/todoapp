@@ -2,7 +2,10 @@ var React = require('react');
 var Utils = require('./Utils')
 
 var _COMPLETE = "complete";
-var _INCOMPLETE = "incomplete"
+var _INCOMPLETE = "incomplete";
+var _ENTER_KEY = 13;
+var _BACKSPACE_KEY = 8;
+
 
 var TodoItem = React.createClass({
     componentDidMount: function(){
@@ -28,11 +31,13 @@ var TodoItem = React.createClass({
       currentSpan.draggable = false;
       currentObj.contentEditable = true;
       currentObj.style.outline = 0;
+      // currentObj.innerHTML = currentObj.innerHTML.trim();
+      console.log(currentObj.innerHTML.trim());
       currentObj.focus();
       Utils.setEndOfContentEditable(currentObj);
     },
     trashClick: function(event){
-      event.preventDefault();
+      // event.preventDefault();
       // console.log("removed item");
       this.props.removeTask(this.props.reactKey);
     },
@@ -49,10 +54,16 @@ var TodoItem = React.createClass({
     },
     onKeyDown: function(e){
       var self = this;
-      if(e.keyCode == 13){
+      if(e.keyCode == _ENTER_KEY){
         e.preventDefault();
         self.onBlur();
         React.findDOMNode(this.refs.spanText).blur();
+        return;
+      }else if(e.keyCode == _BACKSPACE_KEY){
+        var currentObj = React.findDOMNode(this.refs.spanText);
+        if(currentObj.innerHTML == "&nbsp;"){
+          self.trashClick();
+        }
         return;
       }
     },
@@ -68,6 +79,15 @@ var TodoItem = React.createClass({
         currentObj.style.textDecoration = "None";
         this.props.editTask(index, 0, _INCOMPLETE);
       }
+    },
+    emitChange: function(event){
+      var currentObj = React.findDOMNode(this.refs.spanText);
+
+      if(currentObj.innerHTML == "<br>"){
+        currentObj.innerHTML = "&nbsp;";
+      }else
+      console.log(currentObj.innerHTML);
+
     },
     onDragStart: function(event){
       console.log("dragged start");
@@ -96,7 +116,6 @@ var TodoItem = React.createClass({
       event.preventDefault();
       var currentSpan = React.findDOMNode(this.refs.refwhole);
 
-      console.log(this.props.currentIndex + " || " + this.props.reactKey);
       if(this.props.reactKey == this.props.currentIndex){
         currentSpan.style.border="2px solid #d10f0f"; // Red
       }else{
@@ -126,6 +145,7 @@ var TodoItem = React.createClass({
             <span ref="refwhole" key={this.props.key}
               reactKey={this.props.reactKey}
               className="list-group-item"
+              onDoubleClick={this.handleEdit}
               onDragStart={this.onDragStart}
               onDragEnd={this.onDragEnd}
               onDragOver={this.onDragOver}
@@ -141,13 +161,12 @@ var TodoItem = React.createClass({
                     id="myText"
                     ref="spanText"
                     className="single-item"
-                    onDoubleClick={this.handleEdit}
                     onBlur={this.onBlur}
-                    onKeyDown={this.onKeyDown}>
+                    onKeyDown={this.onKeyDown}
+                    onInput={this.emitChange}>
                     {this.props.text}</span>
                   <span className="createdAt single-createAt">{this.props.timestamp}</span>
                 </div>
-                <label className="glyphicon glyphicon-trash" onClick={this.trashClick}></label>
             </span>
         );
     }

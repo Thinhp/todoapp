@@ -13,15 +13,12 @@ var TodoNewTask = React.createClass({
     var obj = React.findDOMNode(this.refs.newTaskwhole);
     obj.style.cursor = "pointer";
   },
-  handleAddTask: function(){
-
-  },
   onBlur: function(e){
     console.log("texting blur");
     var obj = React.findDOMNode(this.refs.newTaskSpanText);
     if(obj.innerText.trim() != ""){
       //Handle adding task
-      this.props.addTask(obj.innerText);
+      this.props.addTask(obj.innerText.trim());
     }
     obj.innerText = "";
     obj.blur();

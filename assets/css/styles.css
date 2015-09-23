@@ -38,22 +38,22 @@ h1 {
     cursor: pointer;
 }
 
-.glyphicon-hand-down{
+/*.glyphicon-hand-down{
     position: relative;
     right: 30px;
-}
+}*/
 
 .input-group {
     margin-left: 4%;
 }
 
 
-.glyphicon-trash{
+/*.glyphicon-trash{
     position: absolute;
     top: 40%;
     right: 10px;
     margin-top: -9px;
-}
+}*/
 
 span.createdAt {
     margin-top: 10px;
