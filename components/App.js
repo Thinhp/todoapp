@@ -98,7 +98,9 @@ var App = React.createClass({
   render: function(){
     return(
       <div>
-        <h1> TODO </h1>
+        <div className="title">
+          <h1> TODO </h1>
+        </div>
         <TodoList
           addTask={this.addTask}
           taskList={this.state.taskList}

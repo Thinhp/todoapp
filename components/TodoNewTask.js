@@ -16,13 +16,13 @@ var TodoNewTask = React.createClass({
   onBlur: function(e){
     console.log("texting blur");
     var obj = React.findDOMNode(this.refs.newTaskSpanText);
-    if(obj.innerText.trim() != ""){
+    if(obj.textContent.trim() != ""){
       //Handle adding task
-      this.props.addTask(obj.innerText.trim());
+      this.props.addTask(obj.textContent.trim());
     }
-    obj.innerText = "";
+    obj.innerHTML = "";
     obj.blur();
-    obj.innerText = "Add new task"
+    obj.innerHTML = "Add new task"
     obj.style.color= "#aaa8a8";
   },
   onKeyDown: function(e){

@@ -32,7 +32,6 @@ var TodoItem = React.createClass({
       currentObj.contentEditable = true;
       currentObj.style.outline = 0;
       // currentObj.innerHTML = currentObj.innerHTML.trim();
-      console.log(currentObj.innerHTML.trim());
       currentObj.focus();
       Utils.setEndOfContentEditable(currentObj);
     },
@@ -44,7 +43,7 @@ var TodoItem = React.createClass({
     onBlur: function(){
       var index = this.props.reactKey;
 
-      new_value = React.findDOMNode(this.refs.spanText).innerText.trim();
+      new_value = React.findDOMNode(this.refs.spanText).textContent.trim();
 
       React.findDOMNode(this.refs.spanText).contentEditable = false;
       this.props.editTask(index, new_value, 0);
@@ -62,6 +61,7 @@ var TodoItem = React.createClass({
       }else if(e.keyCode == _BACKSPACE_KEY){
         var currentObj = React.findDOMNode(this.refs.spanText);
         if(currentObj.innerHTML == "&nbsp;"){
+          e.preventDefault();
           self.trashClick();
           currentObj = React.findDOMNode(this.refs.spanText);
           currentObj.blur();
@@ -85,10 +85,9 @@ var TodoItem = React.createClass({
     emitChange: function(event){
       var currentObj = React.findDOMNode(this.refs.spanText);
 
-      if(currentObj.innerHTML == "<br>"){
+      if(currentObj.innerHTML == "<br>" || currentObj.innerHTML == ""){
         currentObj.innerHTML = "&nbsp;";
-      }else
-      console.log(currentObj.innerHTML);
+      }
 
     },
     onDragStart: function(event){
@@ -99,7 +98,7 @@ var TodoItem = React.createClass({
       currentSpan.style.borderStyle="dashed";
       currentSpan.style.zIndex="1";
       this.props.currentIndex = this.props.reactKey;
-      console.log("Start: " + this.props.currentIndex);
+      // console.log("Start: " + this.props.currentIndex);
     },
     onDragEnd: function(event){
       // console.log("dragged end");
@@ -137,12 +136,13 @@ var TodoItem = React.createClass({
       currentSpan.style.border="";
     },
     onMouseEnter: function(event){
-      // console.log("mouse enter");
+      console.log("mouse enter");
     },
     onMouseLeave: function(event){
-      // console.log("mouse leave");
+      console.log("mouse leave");
     },
     render: function(){
+      var x_icon = "<span className='glyphicon glyphicon-remove></span>'";
         return(
             <span ref="refwhole" key={this.props.key}
               reactKey={this.props.reactKey}
@@ -168,7 +168,7 @@ var TodoItem = React.createClass({
                     onInput={this.emitChange}>
                     {this.props.text}</span>
                   <span className="createdAt single-createAt">{this.props.timestamp}</span>
-                </div>
+              </div>
             </span>
         );
     }
