@@ -6,8 +6,12 @@ var _INCOMPLETE = "incomplete";
 var _ENTER_KEY = 13;
 var _BACKSPACE_KEY = 8;
 
-
 var TodoItem = React.createClass({
+    getInitialState: function(){
+      return({
+        enable_x_trash: false
+      })
+    },
     componentDidMount: function(){
       var currentObj = React.findDOMNode(this.refs.spanText);
       var currentCheckbox = React.findDOMNode(this.refs.refcb);
@@ -101,7 +105,6 @@ var TodoItem = React.createClass({
       // console.log("Start: " + this.props.currentIndex);
     },
     onDragEnd: function(event){
-      // console.log("dragged end");
       event.preventDefault();
     },
     onDrop: function(event){
@@ -128,21 +131,28 @@ var TodoItem = React.createClass({
       return;
     },
     onDragEnter: function(event){
-      // console.log("drag enter");
+
     },
     onDragLeave: function(event){
-      // console.log("drag exit");
       var currentSpan = React.findDOMNode(this.refs.refwhole);
       currentSpan.style.border="";
     },
     onMouseEnter: function(event){
-      console.log("mouse enter");
+      this.setState({
+        enable_x_trash: true
+      });
     },
     onMouseLeave: function(event){
-      console.log("mouse leave");
+      this.setState({
+        enable_x_trash: false
+      });
     },
     render: function(){
-      var x_icon = "<span className='glyphicon glyphicon-remove></span>'";
+      var x_icon =
+      <span
+        className='glyphicon glyphicon-remove'
+        onClick={this.trashClick}
+      />;
         return(
             <span ref="refwhole" key={this.props.key}
               reactKey={this.props.reactKey}
@@ -169,6 +179,7 @@ var TodoItem = React.createClass({
                     {this.props.text}</span>
                   <span className="createdAt single-createAt">{this.props.timestamp}</span>
               </div>
+              {this.state.enable_x_trash && {x_icon} }
             </span>
         );
     }
